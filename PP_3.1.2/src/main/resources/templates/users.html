@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <meta charset="UTF-8">
+    <title>Table users</title>
+    <style>
+        table th, table td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Таблица пользователей</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Зарплата</th>
+        <th>Возраст</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSalary()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td><a th:href="'/users/id?id=' + ${user.getId()}">Изменить</a></td>
+        <td><a th:href="'/users/removeUser?id=' + ${user.getId()}">Удалить</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class = "container">
+    <h2>Добавить пользователя</h2>
+    <form th:method="POST" th:action="@{/users}" th:object="${user}">
+        <label for="name">Введите имя:</label>
+        <input type="text" th:field="*{name}" id="name"/>
+
+        <label for="age">Введите возраст:</label>
+        <input type="text" th:field="*{age}" id="age"/>
+
+        <label for="salary">Введите зарплату:</label>
+        <input type="text" th:field="*{salary}" id="salary"/>
+
+
+        <input type="submit" value="Сохранить"/>
+    </form>
+    <div class ="button">
+        <button onclick="window.location.href = '/users'">К таблице</button>
+    </div>
+    </div>
+<div class = "container">
+    <h2>Изменить пользователя</h2>
+    <form th:method="POST" th:action="@{/users/id}" th:object="${user}">
+        <input hidden="hidden" type="number" th:field="*{id}" id="idUser"/>
+
+        <label for="name">Введите имя:</label>
+        <input type="text" th:field="*{name}" id="nameUpdate"/>
+
+        <label for="age">Введите возраст:</label>
+        <input type="text" th:field="*{age}" id="ageUpdate"/>
+
+        <label for="salary">Введите зарплату:</label>
+        <input type="text" th:field="*{salary}" id="salaryUpdate"/>
+
+
+        <input type="submit" value="Изменить"/>
+    </form>
+    <div class ="button">
+        <button onclick="window.location.href = '/users'">К таблице</button>
+    </div>
+</div>
+</body>
+</html>
