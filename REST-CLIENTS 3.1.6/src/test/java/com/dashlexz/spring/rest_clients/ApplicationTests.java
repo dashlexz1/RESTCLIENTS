@@ -1,0 +1,13 @@
+package com.dashlexz.spring.rest_clients;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
